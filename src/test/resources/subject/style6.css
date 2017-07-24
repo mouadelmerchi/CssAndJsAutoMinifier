@@ -1,0 +1,204 @@
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    color: #f27489;
+}
+
+hr.star-light:after {
+    background-color: #f27489;
+}
+
+hr.star-primary {
+    border-color: #776b80;
+}
+
+hr.star-primary:after, .title-primary {
+    color: #776b80;
+}
+
+header {
+    background: #f27489;
+}
+
+.navbar-custom {
+    background: #776b80;
+}
+
+.navbar-custom .navbar-nav li a:hover {
+    color: #f27489;
+}
+
+.navbar-custom .navbar-nav li.active a,
+.navbar-custom .navbar-nav li.active a:hover,
+.navbar-custom .navbar-nav li.active a:focus,
+.navbar-custom .navbar-nav li.active a:active {
+    background: #f27489;
+}
+
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+    background-color: #f27489;
+    border-color: #f27489;
+}
+
+#mouse div span::before {
+    background-color: #776b80;
+}
+
+section.success {
+    background: #f27489;
+}
+
+#portfolio .portfolio-item .portfolio-link .caption {
+    background: rgba(242, 116, 137, 0.9);
+}
+
+.floating-label-form-group-with-focus label {
+    color: #f27489;
+}
+
+footer .footer-above {
+    background-color: #776b80;
+}
+
+footer .footer-below {
+    background-color: #6a5f72;
+}
+
+.btn--style1 {
+    display: block;
+    border: 2px solid #f27489;
+}
+
+.btn--style1:hover {
+    border-color: #f27489;
+    background: #f27489;
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
+    color: #f27489;
+}
+
+.btn-primary {
+    background-color: #776b80;
+    border-color: #776b80;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+    background-color: #776b80;
+    border-color: #776b80;
+}
+
+.btn-primary .badge {
+    color: #776b80;
+}
+
+.btn-success {
+    background-color: #f27489;
+    border-color: #f27489;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+    background-color: #ee4561;
+    border-color: #ee4561;
+}
+
+.btn-success.disabled,
+.btn-success[disabled],
+fieldset[disabled] .btn-success,
+.btn-success.disabled:hover,
+.btn-success[disabled]:hover,
+fieldset[disabled] .btn-success:hover,
+.btn-success.disabled:focus,
+.btn-success[disabled]:focus,
+fieldset[disabled] .btn-success:focus,
+.btn-success.disabled:active,
+.btn-success[disabled]:active,
+fieldset[disabled] .btn-success:active,
+.btn-success.disabled.active,
+.btn-success[disabled].active,
+fieldset[disabled] .btn-success.active {
+    background-color: #f27489;
+    border-color: #f27489;
+}
+
+.btn-success .badge {
+    color: #f27489;
+}
+
+.portfolio-modal .close-modal .lr {
+    background-color: #776b80;
+}
+
+.portfolio-modal .close-modal .lr .rl {
+    background-color: #776b80;
+}
+
+#skipnav a:focus {
+    background: #f27489;
+}
+
+.btn-download {
+    color: #f27489;
+}
+
+.btn-download:hover {
+    color: #776b80;
+}
+
+blockquote {
+    border-left: 10px solid #f27489;
+}
+
+blockquote:before {
+    color: #f27489;
+}
+
+.text-theme-color {
+    color: #f27489;
+}
+
+/* Services CSS */
+.service-item:nth-child(even) {
+    background: #fce0e4;
+}
+
+.service-item__icon i {
+    border: 2px solid #f27489;
+    color: #f27489;
+}
+
+.service-item__icon i:hover,
+.service-item__icon i:focus,
+.service-item__icon i:active,
+.service-item__icon i.active {
+    background: #f27489;
+    border: solid 2px #f27489;
+}
+
+.service-item__title {
+    color: #776b80;
+}

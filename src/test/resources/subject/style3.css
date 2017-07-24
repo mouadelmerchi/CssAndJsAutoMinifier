@@ -1,0 +1,191 @@
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    color: #18BC9C;
+}
+
+hr.star-light:after {
+    background-color: #18BC9C;
+}
+
+hr.star-primary {
+    border-color: #2C3E50;
+}
+
+hr.star-primary:after, .title-primary {
+    color: #2C3E50;
+}
+
+header {
+    background: #18BC9C;
+}
+
+.navbar-custom {
+    background: #2C3E50;
+}
+
+.navbar-custom .navbar-nav li a:hover {
+    color: #18BC9C;
+}
+
+.navbar-custom .navbar-nav li.active a,
+.navbar-custom .navbar-nav li.active a:hover,
+.navbar-custom .navbar-nav li.active a:focus,
+.navbar-custom .navbar-nav li.active a:active {
+    background: #18BC9C;
+}
+
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+    background-color: #18BC9C;
+    border-color: #18BC9C;
+}
+
+#mouse div span::before {
+    background-color: #2C3E50;
+}
+
+section.success {
+    background: #18BC9C;
+}
+
+#portfolio .portfolio-item .portfolio-link .caption {
+    background: rgba(24, 188, 156, 0.9);
+}
+
+.floating-label-form-group-with-focus label {
+    color: #18BC9C;
+}
+
+footer .footer-above {
+    background-color: #2C3E50;
+}
+
+footer .footer-below {
+    background-color: #233140;
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
+    color: #18BC9C;
+}
+
+.btn-primary {
+    background-color: #2C3E50;
+    border-color: #2C3E50;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+    background-color: #2C3E50;
+    border-color: #2C3E50;
+}
+
+.btn-primary .badge {
+    color: #2C3E50;
+}
+
+.btn-success {
+    background-color: #18BC9C;
+    border-color: #18BC9C;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+    background-color: #128f76;
+    border-color: #128f76;
+}
+
+.btn-success.disabled,
+.btn-success[disabled],
+fieldset[disabled] .btn-success,
+.btn-success.disabled:hover,
+.btn-success[disabled]:hover,
+fieldset[disabled] .btn-success:hover,
+.btn-success.disabled:focus,
+.btn-success[disabled]:focus,
+fieldset[disabled] .btn-success:focus,
+.btn-success.disabled:active,
+.btn-success[disabled]:active,
+fieldset[disabled] .btn-success:active,
+.btn-success.disabled.active,
+.btn-success[disabled].active,
+fieldset[disabled] .btn-success.active {
+    background-color: #18BC9C;
+    border-color: #18BC9C;
+}
+
+.btn-success .badge {
+    color: #18BC9C;
+}
+
+.portfolio-modal .close-modal .lr,
+.portfolio-modal .close-modal .lr .rl {
+    background-color: #2C3E50;
+}
+
+#skipnav a:focus {
+    background: #18BC9C;
+}
+
+.btn-download {
+    color: #18BC9C;
+}
+
+.btn-download:hover {
+    color: #2c3e50;
+}
+
+blockquote {
+    border-left: 10px solid #18BC9C;
+}
+
+blockquote:before {
+    color: #18BC9C;
+}
+
+.text-theme-color {
+    color: #18BC9C;
+}
+
+/* Services CSS */
+.service-item:nth-child(even) {
+    background: #eafcf9;
+}
+
+.service-item__icon i {
+    border: 2px solid #18BC9C;
+    color: #18BC9C;
+}
+
+.service-item__icon i:hover,
+.service-item__icon i:focus,
+.service-item__icon i:active,
+.service-item__icon i.active {
+    background: #18BC9C;
+    border: solid 2px #18BC9C;
+}
+
+.service-item__title {
+    color: #2c3e50;
+}
