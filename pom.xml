@@ -116,32 +116,20 @@
 					</configuration>
 				</plugin>
 
-				<!-- Maven Shade Plugin -->
+				<!-- Apache Maven Assembly Plugin -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-shade-plugin</artifactId>
+					<artifactId>maven-assembly-plugin</artifactId>
 					<version>3.0.0</version>
-					<executions>
-						<execution>
-							<phase>package</phase>
-							<goals>
-								<goal>shade</goal>
-							</goals>
-							<configuration>
-								<transformers>
-									<transformer
-										implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-										<mainClass>App</mainClass>
-									</transformer>
-									<transformer
-										implementation="org.apache.maven.plugins.shade.resource.DontIncludeResourceTransformer">
-										<resource>log4j2.xml</resource>
-										<resource>identity</resource>
-									</transformer>
-								</transformers>
-							</configuration>
-						</execution>
-					</executions>
+					<configuration>
+						<archive>
+							<manifest>
+								<mainClass>App</mainClass>
+							</manifest>
+						</archive>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
