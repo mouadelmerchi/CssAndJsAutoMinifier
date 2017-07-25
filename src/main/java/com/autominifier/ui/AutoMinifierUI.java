@@ -82,27 +82,29 @@ public class AutoMinifierUI extends Application {
 
    private static final Logger LOGGER = LogManager.getLogger(AutoMinifierUI.class);
 
-   public static final String  SPLASH_IMAGE  = "img/splash.png";
+   private static final String SPLASH_IMAGE  = "img/splash.png";
    private static final String SPLASH_STYLE  = "-fx-padding:5;-fx-background-color:#f2f2f2; "
          + "-fx-border-width:2;-fx-border-color:linear-gradient(to bottom,#199ae6,derive(#199ae6, 50%));";
    private static final int    SPLASH_WIDTH  = 676;
    private static final int    SPLASH_HEIGHT = 227;
 
-   private static final String TITLE       = " CSS And Javascript Auto-minifier";
    private static final String ASSETS_PATH = "/com/autominifier/%s";
 
    private static final String BOOTSTRAP_STYLE_SHEET = "css/bootstrap3.css";
    private static final String STYLE_SHEET           = "css/style.css";
-   private static final String FILE_MENU_ICON        = "img/menu-24.png";
-   private static final String SETTINGS_ICON         = "img/settings-16.png";
-   private static final String QUIT_ICON             = "img/power-off-16.png";
-   private static final String APP_ICON              = "img/logo-16.png";
-   private static final String APP_LOGO              = "img/logo-48.png";
-   private static final String HELP_ICON             = "img/help-16.png";
-   private static final String INFO_GRAPHIC_S        = "img/info-32.png";
-   private static final String INFO_GRAPHIC_M        = "img/info-48.png";
-   private static final String AUTO_MODE_OFF_ICON    = "img/static-gear-24.png";
-   private static final String AUTO_MODE_ON_ICON     = "img/animated-gear-24.gif";
+
+   private static final String FILE_MENU_ICON     = "img/menu-24.png";
+   private static final String SETTINGS_ICON      = "img/settings-16.png";
+   private static final String QUIT_ICON          = "img/power-off-16.png";
+   private static final String APP_ICON           = "img/logo-16.png";
+   private static final String APP_LOGO           = "img/logo-48.png";
+   private static final String HELP_ICON          = "img/help-16.png";
+   private static final String INFO_GRAPHIC_S     = "img/info-32.png";
+   private static final String INFO_GRAPHIC_M     = "img/info-48.png";
+   private static final String AUTO_MODE_OFF_ICON = "img/static-gear-24.png";
+   private static final String AUTO_MODE_ON_ICON  = "img/animated-gear-24.gif";
+
+   private static final String TITLE = " CSS And Javascript Auto-minifier";
 
    private static final String NO_DIR_SELECTION_TEXT    = "No directory selected!";
    private static final String INFO_TOOLTIP_TEXT        = "Check this if you want a recursive search\nin the selected directory";
@@ -185,8 +187,6 @@ public class AutoMinifierUI extends Application {
       protected Scene call() throws InterruptedException {
          updateMessage("Please wait . . .");
          Scene scene = createAndSetupScene(mainStage);
-         scene.getStylesheets().addAll(String.format(ASSETS_PATH, BOOTSTRAP_STYLE_SHEET),
-               String.format(ASSETS_PATH, STYLE_SHEET));
          updateMessage("Loading complete.");
 
          return scene;
@@ -311,6 +311,8 @@ public class AutoMinifierUI extends Application {
       styleNodes();
       GridPane gridPane = createGridPane();
       Scene scene = new Scene(gridPane);
+      scene.getStylesheets().addAll(String.format(ASSETS_PATH, BOOTSTRAP_STYLE_SHEET),
+            String.format(ASSETS_PATH, STYLE_SHEET));
 
       return scene;
    }
@@ -345,12 +347,15 @@ public class AutoMinifierUI extends Application {
 
       titleLabel = new Label(TITLE,
             new ImageView(new Image(getClass().getResourceAsStream(String.format(ASSETS_PATH, APP_LOGO)))));
+      titleLabel.setId("titleLabel");
 
       // Directory Label
       dirLabel = new Label("Directory:");
+      dirLabel.setId("dirLabel");
 
       // Directory Text field
       dirText = new TextField(NO_DIR_SELECTION_TEXT);
+      dirText.setId("dirText");
       dirText.setPrefWidth(340);
       // dirText.setPrefHeight(25);
       dirText.setEditable(false);
@@ -359,30 +364,37 @@ public class AutoMinifierUI extends Application {
 
       // Directory Chooser
       btnOpenDirectoryChooser = new Button();
-//      btnOpenDirectoryChooser.setPrefHeight(25);
+      btnOpenDirectoryChooser.setId("btnOpenDirectoryChooser");
+      // btnOpenDirectoryChooser.setPrefHeight(25);
       btnOpenDirectoryChooser.setText("Browse Directory");
 
       // File Type Label
       fileTypeLabel = new Label("File Type:");
+      fileTypeLabel.setId("fileTypeLabel");
 
       // Toggle group of file type radio buttons
       fileTypeGroup = new ToggleGroupValue<>();
       cssRadio = new RadioButton(FileType.CSS.toString());
+      cssRadio.setId("cssRadio");
       fileTypeGroup.add(cssRadio, FileType.CSS);
       jsRadio = new RadioButton(FileType.JS.toString());
+      jsRadio.setId("jsRadio");
       fileTypeGroup.add(jsRadio, FileType.JS);
       bothRadio = new RadioButton(FileType.BOTH.toString());
+      bothRadio.setId("bothRadio");
       fileTypeGroup.add(bothRadio, FileType.BOTH);
       bothRadio.setSelected(true);
 
       // Recursive Check box
       recursiveCheckBox = new CheckBox("Recursive");
+      recursiveCheckBox.setId("recursiveCheckBox");
       recursiveCheckBox.setIndeterminate(false);
       recursiveCheckBox.setSelected(true);
 
       // Info Icon
       helpIcon = new Label("",
             new ImageView(new Image(getClass().getResourceAsStream(String.format(ASSETS_PATH, HELP_ICON)))));
+      helpIcon.setId("helpIcon");
 
       // Info Icon Tooltip
       final Tooltip recursiveTooltip = new Tooltip();
@@ -394,9 +406,11 @@ public class AutoMinifierUI extends Application {
 
       // List View Label
       listViewLabel = new Label("Files Found:");
+      listViewLabel.setId("listViewLabel");
 
       // Automatic Mode Switch
       autoModeSwitch = new ToggleSwitch("Auto Mode");
+      autoModeSwitch.setId("autoModeSwitch");
       autoModeSwitch.setSelected(false);
 
       NotificationOptions options = new NotificationOptions(GraphicMode.CUSTOM,
@@ -406,11 +420,13 @@ public class AutoMinifierUI extends Application {
 
       // Found Files List View
       listView = new ListView<>();
+      listView.setId("listView");
       listView.setPrefWidth(545);
       listView.setPrefHeight(250);
 
       // Start Button
       startButton = new Button("Compress");
+      startButton.setId("startButton");
       startButton.setPrefWidth(546);
       startButton.setPrefHeight(25);
 
@@ -418,6 +434,7 @@ public class AutoMinifierUI extends Application {
 
       // Status Bar
       statusBar = new StatusBar();
+      statusBar.setId("statusBar");
       statusBar.setText(READY_TEXT);
       // statusBar.prefWidthProperty().bind(primaryStage.widthProperty());
       statusBar.setPrefWidth(570);
@@ -568,7 +585,6 @@ public class AutoMinifierUI extends Application {
       titleLabel.getStyleClass().add("title-label");
       dirLabel.getStyleClass().add("cntrl-label");
       fileTypeLabel.getStyleClass().add("cntrl-label");
-      cssRadio.getStyleClass().add("cssRadio");
       listViewLabel.getStyleClass().add("cntrl-label");
       autoModeSwitch.getStyleClass().add("cntrl-label");
       btnOpenDirectoryChooser.getStyleClass().add("primary");

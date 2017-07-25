@@ -82,26 +82,17 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-
-		<testSourceDirectory>src/test/java</testSourceDirectory>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-			</testResource>
-		</testResources>
+		<!--<sourceDirectory>src/main/java</sourceDirectory> <resources> <resource> 
+			<directory>src/main/resources</directory> <filtering>true</filtering> </resource> 
+			</resources> <testSourceDirectory>src/test/java</testSourceDirectory> <testResources> 
+			<testResource> <directory>src/test/resources</directory> </testResource> 
+			</testResources> -->
 
 		<pluginManagement>
 			<plugins>
@@ -116,7 +107,7 @@
 					</configuration>
 				</plugin>
 
-				<!-- Apache Maven Assembly Plugin -->
+				<!-- Apache Maven Assembly Plugin (goals: clean compile assembly:single) -->
 				<plugin>
 					<artifactId>maven-assembly-plugin</artifactId>
 					<version>3.0.0</version>

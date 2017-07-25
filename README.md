@@ -13,11 +13,11 @@ Current version: 1.0.0
 - Filter your search by specifying whether you want to compress CSS files, JS files or both.
 - Compress found files manually.
 - Enable automatic mode where the selected directory is watched for changes made to CSS/JS files. With this mode on,
-  you can edit your CSS/JS files in your favorite IDE and the program will take care of the compressing automatically.
+  you can edit your CSS/JS files in your IDE and the program will take care of the compressing automatically.
 - Choose your minification settings (ex. minification extension like .min or -min, Enable/Disable obfuscation of js variables, etc.)
 
 # Program UI
-![CSS & JS Auto-minifier](https://raw.githubusercontent.com/mouadelmerchi/CssAndJsAutoMinifier/master/gui.png)
+![CSS & JS Auto-minifier](https://github.com/mouadelmerchi/CssAndJsAutoMinifier/blob/master/GUI.png)
 
 # Used APIs:
 - [JavaFX 8 and ControlsFX 8](http://fxexperience.com/controlsfx/)
