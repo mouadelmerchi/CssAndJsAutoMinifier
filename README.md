@@ -5,8 +5,6 @@ JavaFX program to minify all CSS and/or JavaScript files inside a directory.
 
 Without the dependency of online services, it can be used offline.
 
-Current version: 1.0.0
-
 # What can we do with it?
 - Select a directory containing CSS/JS files.
 - Filter your search by specifying whether you want to process the selected directory recursively.
