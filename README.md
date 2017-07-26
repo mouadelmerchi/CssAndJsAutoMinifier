@@ -17,11 +17,7 @@ Current version: 1.0.0
 - Choose your minification settings (ex. minification extension like .min or -min, Enable/Disable obfuscation of js variables, etc.)
 
 # Program UI
-<<<<<<< HEAD
-![CSS & JS Auto-minifier](https://github.com/mouadelmerchi/CssAndJsAutoMinifier/blob/master/GUI.png)
-=======
 ![CSS & JS Auto-minifier](https://github.com/mouadelmerchi/CssAndJsAutoMinifier/blob/master/GUI.PNG)
->>>>>>> 17f5564cd5a3ab7574b0bc2d5c44952623dcda25
 
 # Used APIs:
 - [JavaFX 8 and ControlsFX 8](http://fxexperience.com/controlsfx/)
