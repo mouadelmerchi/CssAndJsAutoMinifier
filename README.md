@@ -25,7 +25,7 @@ Without the dependency of online services, it can be used offline.
 - [Apache Commons APIs](https://commons.apache.org/)
 
 # TODO
-- Regenerate compressed files after deletion with automatic mode on.
+- Regenerate compressed files after deletion while automatic mode is on.
   
 # License
 CSS & Js Auto-Minifier

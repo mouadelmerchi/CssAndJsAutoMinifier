@@ -1,4 +1,4 @@
 
-function a() {
+function aFunction(aParam) {
    alert("Hello");
 }
