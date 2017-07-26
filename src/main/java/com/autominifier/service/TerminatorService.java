@@ -1,5 +1,6 @@
 package com.autominifier.service;
 
+import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
@@ -19,7 +20,10 @@ public class TerminatorService extends Service<Void> {
          @Override
          protected Void call() throws Exception {
             watcher.stop();
-            autoMinService.cancel();
+            Platform.runLater(() -> {
+               autoMinService.cancel();
+            });
+            
             return null;
          }
       };

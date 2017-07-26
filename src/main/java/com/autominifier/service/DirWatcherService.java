@@ -145,7 +145,7 @@ public class DirWatcherService implements Runnable {
                   processFile(setOfSettings, ev.kind(), new FilePathWrapper(child.toString()));
                }
             } else if (kind == ENTRY_CREATE) {
-               LOGGER.debug("ENTRY_CREATE event triggered. Process file: %s", child);
+               LOGGER.debug("ENTRY_CREATE event triggered. Process file: ", child);
                // if directory is created, and watching recursively, then
                // register it and its sub-directories
                if (Files.isDirectory(child, NOFOLLOW_LINKS)) {

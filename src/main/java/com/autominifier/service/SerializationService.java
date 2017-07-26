@@ -25,8 +25,8 @@ public class SerializationService extends Service<Void> {
 
    private static final Logger LOGGER = LogManager.getLogger(SerializationService.class);
 
-   private final Settings      draftSettings;
-   private final Settings      finalSettings;
+   private final Settings          draftSettings;
+   private final Settings          finalSettings;
    private final SerializationType serialize;
 
    public SerializationService(Settings draftSettings, Settings finalSettings, SerializationType serialize) {

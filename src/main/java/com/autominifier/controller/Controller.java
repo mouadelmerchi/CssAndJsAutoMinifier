@@ -132,6 +132,7 @@ public class Controller {
       });
       sentinelService.setOnFailed(event -> {
          LOGGER.debug("JSON FILE NOT UPDATE FAILED");
+         checkSettingsSet();
          startListingFiles();
       });
    }
@@ -165,35 +166,37 @@ public class Controller {
             getRoot(), getFileType(), isRecursive());
       deleterService.start();
 
+      EventHandler<WorkerStateEvent> func = ev -> {
+         view.enableControls(true);
+         view.switchButtonControls(true, true);
+      };
+
       deleterService.setOnSucceeded(event -> {
          LOGGER.debug("OLD MINIFIED FILES DELETER SUCCEEDED");
 
          Service<Void> minService = new MinifierService(view.getStatusBar().textProperty(),
                view.getStatusBar().progressProperty(), view.getFinalSettings(), view.getListView().getItems());
          minService.start();
-         EventHandler<WorkerStateEvent> func = ev -> {
-            view.enableControls(true);
-            view.switchButtonControls(true, true);
-         };
+
          minService.setOnSucceeded(func);
          minService.setOnFailed(func);
       });
 
-      deleterService.setOnFailed(event -> {
-         LOGGER.debug("OLD MINIFIED FILES DELETER FAILED");
-         view.enableControls(true);
-         view.switchButtonControls(true, true);
-      });
+      deleterService.setOnFailed(func);
    }
 
    public void startAutoMode() {
       view.enableControls(false);
       view.switchButtonControls(false, true);
 
-      // TODO - remove old minified files
       OldMinifiedFilesDeleterService deleterService = new OldMinifiedFilesDeleterService(view.getPartialSettings(),
             getRoot(), getFileType(), isRecursive());
       deleterService.start();
+
+      EventHandler<WorkerStateEvent> func = ev -> {
+         view.enableControls(true);
+         view.switchButtonControls(true, true);
+      };
 
       deleterService.setOnSucceeded(event -> {
          LOGGER.debug("OLD MINIFIED FILES DELETER SUCCEEDED");
@@ -205,22 +208,14 @@ public class Controller {
             autoMinService.setDelay(Duration.ZERO);
             autoMinService.start();
 
-            autoMinService.setOnFailed(ev -> {
-               LOGGER.debug("AUTO MODE FAILED");
-            });
-            autoMinService.setOnCancelled(ev -> {
-               LOGGER.debug("AUTO MODE CANCELED");
-            });
+            autoMinService.setOnFailed(func);
+            autoMinService.setOnCancelled(func);
          } catch (IOException e) {
             throw new UncheckedIOException(e);
          }
       });
 
-      deleterService.setOnFailed(event -> {
-         LOGGER.debug("OLD MINIFIED FILES DELETER FAILED");
-         view.enableControls(true);
-         view.switchButtonControls(true, true);
-      });
+      deleterService.setOnFailed(func);
    }
 
    public void stopAutoMode() {
@@ -273,22 +268,18 @@ public class Controller {
          LOGGER.debug("DESERIALZATION CANCELED");
       });
    }
-   
+
    public void persistSettingsAndExit() {
       SerializationService serializer = new SerializationService(view.getDraftSettings(), view.getFinalSettings(),
             SerializationType.SERIALIZE);
       serializer.start();
-      serializer.setOnSucceeded(stateEvent -> {
-         LOGGER.debug("SERIALZATION SUCCEEDED");
+
+      EventHandler<WorkerStateEvent> func = stateEvent -> {
          Platform.exit();
-      });
-      serializer.setOnFailed(event -> {
-         LOGGER.debug("SERIALZATION FAILED");
-         Platform.exit();
-      });
-      serializer.setOnCancelled(event -> {
-         LOGGER.debug("SERIALZATION CANCELED");
-         Platform.exit();
-      });
+      };
+
+      serializer.setOnSucceeded(func);
+      serializer.setOnFailed(func);
+      serializer.setOnCancelled(func);
    }
 }

@@ -565,6 +565,10 @@ public class AutoMinifierUI extends Application {
       DialogOptions opts = new DialogOptions(AlertType.ERROR, null, null, false, Modality.APPLICATION_MODAL,
             StageStyle.DECORATED, primaryStage);
       Alert dialog = Dialogs.createSimpleDialog(TITLE, ERROR_DIALOG_TEXT, opts);
+
+      DialogPane dialogPane = dialog.getDialogPane();
+      ((Button) dialogPane.lookupButton(ButtonType.OK)).getStyleClass().add("primary");
+
       dialog.show();
    }
 
@@ -572,6 +576,11 @@ public class AutoMinifierUI extends Application {
       DialogOptions opts = new DialogOptions(AlertType.CONFIRMATION, null, null, false, Modality.APPLICATION_MODAL,
             StageStyle.DECORATED, primaryStage);
       Alert dialog = Dialogs.createSimpleDialog(TITLE, CONFIRM_DIALOG_TEXT, opts);
+
+      DialogPane dialogPane = dialog.getDialogPane();
+      ((Button) dialogPane.lookupButton(ButtonType.OK)).getStyleClass().add("primary");
+      ((Button) dialogPane.lookupButton(ButtonType.CANCEL)).getStyleClass().add("default");
+
       dialog.showAndWait().ifPresent(result -> {
          if (result == ButtonType.OK) {
             controller.stopAutoMode();
