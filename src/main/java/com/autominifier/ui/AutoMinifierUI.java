@@ -29,17 +29,12 @@ import com.autominifier.ui.controls.SettingsPropertySheet;
 import com.autominifier.ui.controls.ToggleGroupValue;
 import com.autominifier.util.AnimatedGif;
 
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.concurrent.Task;
-import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -53,12 +48,10 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -68,25 +61,15 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-public class AutoMinifierUI extends Application {
+public class AutoMinifierUI {
 
    private static final Logger LOGGER = LogManager.getLogger(AutoMinifierUI.class);
-
-   private static final String SPLASH_IMAGE  = "img/splash.png";
-   private static final String SPLASH_STYLE  = "-fx-padding:5;-fx-background-color:#f2f2f2; "
-         + "-fx-border-width:2;-fx-border-color:linear-gradient(to bottom,#199ae6,derive(#199ae6, 50%));";
-   private static final int    SPLASH_WIDTH  = 676;
-   private static final int    SPLASH_HEIGHT = 227;
 
    private static final String ASSETS_PATH = "/com/autominifier/%s";
 
@@ -119,10 +102,6 @@ public class AutoMinifierUI extends Application {
 
    private static final String READY_TEXT     = "Ready";
    private static final String AUTO_MODE_TEXT = "Automatic Mode On";
-
-   private Pane        splashLayout;
-   private ProgressBar loadProgress;
-   private Label       progressText;
 
    private MenuBar     menuBar;
    private ActionGroup fileActionGroup;
@@ -159,91 +138,21 @@ public class AutoMinifierUI extends Application {
 
    private Controller controller;
 
-   @Override
-   public void init() {
+   public AutoMinifierUI() {
       this.draftSettings = new Settings();
       this.finalSettings = new Settings();
-
-      ImageView splash = new ImageView(
-            new Image(getClass().getResourceAsStream(String.format(ASSETS_PATH, SPLASH_IMAGE))));
-      loadProgress = new ProgressBar();
-      loadProgress.setPrefWidth(SPLASH_WIDTH);
-      progressText = new Label("Loading in progress . . .");
-      splashLayout = new VBox(5);
-      splashLayout.getChildren().addAll(splash, loadProgress, progressText);
-      progressText.setAlignment(Pos.CENTER);
-      splashLayout.setStyle(SPLASH_STYLE);
-      splashLayout.setEffect(new DropShadow());
    }
 
-   private class SplashTask extends Task<Scene> {
-      private final Stage mainStage;
-
-      SplashTask(Stage mainStage) {
-         this.mainStage = mainStage;
-      }
-
-      @Override
-      protected Scene call() throws InterruptedException {
-         updateMessage("Please wait . . .");
-         Scene scene = createAndSetupScene(mainStage);
-         updateMessage("Loading complete.");
-
-         return scene;
-      }
-   }
-
-   @Override
-   public void start(Stage initStage) throws Exception {
-      Stage mainStage = new Stage(StageStyle.DECORATED);
-      final Task<Scene> sceneTask = new SplashTask(mainStage);
-      showSplash(initStage, sceneTask, () -> showMainStage(mainStage, sceneTask.valueProperty()));
-      new Thread(sceneTask).start();
-   }
-
-   private void showMainStage(Stage mainStage, ReadOnlyObjectProperty<Scene> scene) {
+   void start(Stage mainStage, ReadOnlyObjectProperty<Scene> scene) {
       controller = new Controller(this);
       controller.loadSettings();
+
       mainStage.setTitle(TITLE);
       mainStage.getIcons().add(new Image(getClass().getResourceAsStream(String.format(ASSETS_PATH, APP_ICON))));
       mainStage.setResizable(false);
       mainStage.setScene(scene.get());
       mainStage.sizeToScene();
       mainStage.show();
-   }
-
-   private void showSplash(final Stage initStage, Task<?> task, InitCompletionHandler initCompletionHandler) {
-      progressText.textProperty().bind(task.messageProperty());
-      loadProgress.progressProperty().bind(task.progressProperty());
-      task.stateProperty().addListener((observableValue, oldState, newState) -> {
-         if (newState == Worker.State.SUCCEEDED) {
-            loadProgress.progressProperty().unbind();
-            loadProgress.setProgress(1);
-            initStage.toFront();
-            FadeTransition fadeSplash = new FadeTransition(Duration.seconds(1), splashLayout);
-            fadeSplash.setFromValue(1.0);
-            fadeSplash.setToValue(0.0);
-            fadeSplash.setOnFinished(actionEvent -> initStage.hide());
-            fadeSplash.play();
-
-            initCompletionHandler.complete();
-         }
-      });
-
-      Scene splashScene = new Scene(splashLayout, Color.TRANSPARENT);
-      final Rectangle2D bounds = Screen.getPrimary().getBounds();
-      initStage.setScene(splashScene);
-      initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
-      initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
-      initStage.getIcons().add(new Image(getClass().getResourceAsStream(String.format(ASSETS_PATH, APP_ICON))));
-      initStage.initStyle(StageStyle.TRANSPARENT);
-      initStage.setAlwaysOnTop(true);
-      initStage.show();
-   }
-
-   @FunctionalInterface
-   private interface InitCompletionHandler {
-      void complete();
    }
 
    /*
@@ -305,7 +214,7 @@ public class AutoMinifierUI extends Application {
    }
 
    /* *** Setting up The Scene *** */
-   private Scene createAndSetupScene(Stage primaryStage) {
+   Scene createAndSetupScene(Stage primaryStage) {
       initNodes();
       setListeners(primaryStage);
       styleNodes();
